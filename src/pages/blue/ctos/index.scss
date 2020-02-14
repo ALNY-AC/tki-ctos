@@ -1,0 +1,38 @@
+@import "@/styles/variable.scss";
+
+#ctos {
+    height: 100vh;
+    display: flex;
+
+
+    .prop-panel {
+        width: 200px;
+        background-color: #ffffff;
+        border-right: solid 1px #ddd;
+        display: flex;
+        flex-direction: column;
+
+        .tree {
+            min-height: 200px;
+            border-bottom: 1px solid #ddd;
+            overflow: auto;
+        }
+
+        .form {
+            flex: 1;
+            padding: 20px;
+        }
+    }
+}
+
+
+
+#ctos /deep/ {
+    .blue {
+        color: #99f;
+    }
+
+    .red-bg {
+        background-color: #f99;
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "area-data-vue": "^1.0.9",
+    "area-linkage-vue": "^5.1.2",
+    "axios": "^0.18.0",
+    "cross-env": "^5.2.0",
+    "element-ui": "^2.11.0",
+    "nuxt": "^2.10.2",
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^7.0.1"
+  }
+}

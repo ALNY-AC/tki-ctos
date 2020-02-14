@@ -1,0 +1,11 @@
+@import "@/styles/variable.scss";
+
+#edit {
+    padding: $page-padding;
+}
+
+#edit /deep/ {
+    .el-input {
+        max-width: 200px;
+    }
+}
