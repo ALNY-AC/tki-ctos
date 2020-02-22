@@ -38,13 +38,12 @@
       </template>
       <el-menu-item index="/article/home/list" :route="{path:'/article/home/list'}">文章列表</el-menu-item>
     </el-submenu>
-    <el-submenu index="房产">
+    <el-submenu index="任务">
       <template slot="title">
-        <span>房产管理</span>
+        <span>任务管理</span>
       </template>
-      <el-menu-item index="/house/list" :route="{path:'/house/list'}">房产列表</el-menu-item>
-      <el-menu-item index="/house/remd" :route="{path:'/house/remd'}">推荐房源</el-menu-item>
-      <el-menu-item index="/userhouse/list" :route="{path:'/userhouse/list'}">用户房源</el-menu-item>
+      <el-menu-item index="/house/list" :route="{path:'/house/list'}">任务列表</el-menu-item>
+      <el-menu-item index="/house/remd" :route="{path:'/house/remd'}">推荐任务</el-menu-item>
     </el-submenu>
     <el-submenu index="用户">
       <template slot="title">

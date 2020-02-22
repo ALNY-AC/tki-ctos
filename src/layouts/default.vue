@@ -4,7 +4,7 @@
     <div class="nav-box">
       <div class="logo-box">
         <div class="fl-box">
-        <div class="title">益火</div>
+        <div class="title">火苗</div>
         <ctos-logo></ctos-logo>
         </div>
       </div>

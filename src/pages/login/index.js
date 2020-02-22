@@ -5,9 +5,9 @@ export default {
     data() {
         return {
             form: {
-                user_type: 1,
+                // user_type: 1,
                 phone: '',
-                user_pwd: '',
+                pwd: '',
             }
         };
     },

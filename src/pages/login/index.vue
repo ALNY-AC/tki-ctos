@@ -1,17 +1,17 @@
 <template>
   <div id="login">
     <div class="logo-img">
-      <img src="@/static/images/logo.png" alt="">
+      <img src="@/static/images/logo.jpg" alt="">
     </div>
     <div class="login-box">
-      <div class="title">家有益房管理后台</div>
+      <div class="title">益火TKI管理后台</div>
       <div class="form-box">
         <el-form @submit.native.prevent :model="form" size="default">
           <el-form-item prop="phone">
             <el-input v-model="form.phone" placeholder="账户名：手机号码"></el-input>
           </el-form-item>
           <el-form-item prop="user_pwd">
-            <el-input type="password" v-model="form.user_pwd" placeholder="账户密码"></el-input>
+            <el-input type="password" v-model="form.pwd" placeholder="账户密码"></el-input>
           </el-form-item>
 
           <el-form-item>
