@@ -7,10 +7,11 @@ export default {
       query: {
         page_size: 10,
         page: 1,
-        is_up:"",
-        task_type:"",
-        name:"",
-        task_state:""
+        is_up: "",
+        task_type: "",
+        name: "",
+        task_state: "",
+        state: ""
       },
       list: [],
       Province_list: null,
@@ -45,46 +46,35 @@ export default {
       }
     },
     async frozen(item) {
-      if (item.is_up == 1) {
-        try {
-          await this.$confirm(`确认禁用？`, '提示')
-        } catch (error) {
-          return false;
-        }
-        const res = await this.$http.post('/task/save', {
-          is_up: 0,
-          id: item.id,
-          is_top: 0
-        });
-        if (res.code >= 0) {
-          this.$message.success('操作成功！');
-          this.update()
-        } else {
-          this.$message.error('操作失败！');
-        }
-      } else {
-        try {
-          await this.$confirm(`确认启用？`, '提示')
-        } catch (error) {
-          return false;
-        }
-        const res = await this.$http.post('/task/save', {
-          is_up: 1,
-          id: item.id,
-        });
-        if (res.code >= 0) {
-          this.$message.success('操作成功！');
-          this.update()
-        } else {
-          this.$message.error('操作失败！');
-        }
 
+      try {
+        await this.$confirm(`确认通过？`, '提示')
+      } catch (error) {
+        return false;
       }
-
-
-
+      const res = await this.$http.post('/task/save', {
+        state: 1,
+        id: item.id,
+      });
+      if (res.code >= 0) {
+        this.$message.success('操作成功！');
+        this.update()
+      } else {
+        this.$message.error('操作失败！');
+      }
     },
-
+    async save(item) {
+      const res = await this.$http.post('/task/save', {
+        is_up: item.is_up,
+        id: item.id
+      });
+      if (res.code >= 0) {
+        this.$message.success('操作成功！');
+        this.update()
+      } else {
+        this.$message.error('操作失败！');
+      }
+    },
     async remd(id) {
       try {
         await this.$confirm('确认推荐此任务？', '提示')

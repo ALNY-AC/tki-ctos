@@ -22,7 +22,7 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="审核状态：">
+        <el-form-item label="任务进度：">
           <el-select v-model="query.task_state" @change="update" placeholder="请选择">
             <el-option label="全部" value></el-option>
             <el-option label="申请中" :value="1"></el-option>
@@ -32,8 +32,15 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="状态：">
+        <el-form-item label="上下架状态：">
           <el-select v-model="query.is_up" @change="update" placeholder="请选择">
+            <el-option label="全部" value></el-option>
+            <el-option label="启用" :value="1"></el-option>
+            <el-option label="禁用" :value="0"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="审核状态：">
+          <el-select v-model="query.state" @change="update" placeholder="请选择">
             <el-option label="全部" value></el-option>
             <el-option label="启用" :value="1"></el-option>
             <el-option label="禁用" :value="0"></el-option>
@@ -71,11 +78,11 @@
         <el-table-column align="center" prop="address" width="200" label="详细地址"></el-table-column>
 
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
-        <el-table-column align="center" prop="state" label="状态" width="80">
+        <el-table-column align="center" label="状态" width="80">
           <template slot-scope="scope">
             <div>
               <el-switch
-                v-model="scope.row.state"
+                v-model="scope.row.is_up"
                 @change="save(scope.row)"
                 :active-value="1"
                 :inactive-value="0"
@@ -85,13 +92,15 @@
         </el-table-column>
         <el-table-column fixed="right" align="center" label="操作" width="180">
           <template slot-scope="scope">
-            <el-button type="text" v-if="scope.row.is_up == 1" @click="frozen(scope.row)">禁用</el-button>
-            <el-button type="text" v-else @click="frozen(scope.row)">启用</el-button>
-            <el-button
+            <el-button type="text" v-if="scope.row.state==0"  @click="frozen(scope.row)">通过</el-button>
+            <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">未通过</el-button>
+            <span v-if="scope.row.state==1">已审核</span>
+            <span v-if="scope.row.state==2">已驳回</span>
+            <!-- <el-button
               type="text"
               v-if="scope.row.is_top == 0 && scope.row.is_up == 1"
               @click="remd(scope.row.id)"
-            >推荐</el-button>
+            >推荐</el-button> -->
           </template>
         </el-table-column>
       </el-table>
