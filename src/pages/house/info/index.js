@@ -39,7 +39,7 @@ export default {
         async refuse() {
 
             try {
-                const res = await this.$prompt('请输入拒绝的理由', '提示', {
+                let {value} = await this.$prompt('请输入拒绝的理由', '提示', {
                   confirmButtonText: '确定',
                   cancelButtonText: '取消',
                 })
@@ -47,7 +47,7 @@ export default {
                 const res = await this.$http.post('/task/save', {
                     state: 2,
                     id: this.$route.query.id,
-                    remarks: {value}
+                    remarks: value
                 });
                 if (res.code >= 0) {
                     this.$message.success('操作成功！');
