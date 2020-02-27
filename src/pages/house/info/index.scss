@@ -3,4 +3,12 @@
     padding: $page-padding;
 }
 
-#info /deep/ {}
+#info /deep/ {
+    .area-select .area-selected-trigger {
+        padding: 0;
+        padding-left: 12px;
+    }
+    .area-select-wrap .area-select {
+        margin-left: 0px;
+    }
+}

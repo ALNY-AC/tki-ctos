@@ -94,7 +94,7 @@
           <template slot-scope="scope">
             <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">待审核</el-button>
             <!-- <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">未通过</el-button> -->
-            <span v-if="scope.row.state==1">已审核</span>
+            <span v-if="scope.row.state==1">已通过</span>
             <span v-if="scope.row.state==2">已驳回</span>
             <!-- <el-button
               type="text"
