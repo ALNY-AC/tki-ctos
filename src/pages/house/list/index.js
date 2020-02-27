@@ -9,7 +9,7 @@ export default {
         page: 1,
         is_up: "",
         task_type: "",
-        name: "",
+        task_name: "",
         task_state: "",
         state: ""
       },

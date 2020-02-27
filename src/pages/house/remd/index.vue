@@ -36,7 +36,7 @@
         </el-form-item> -->
       </el-form>
     <el-table :data="list" row-key="id" stripe style="width: 100%" border>
-        <el-table-column align="left" prop="name" width="150" label="任务名称"></el-table-column>
+        <el-table-column align="left" prop="task_name" width="150" label="任务名称"></el-table-column>
         <el-table-column align="center" label="任务类别">
           <template slot-scope="scope">
             <span v-if="scope.row.task_type==1">翻译</span>

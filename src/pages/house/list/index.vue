@@ -7,7 +7,7 @@
         <el-form-item label="名称：">
           <el-input
             style="width:200px"
-            v-model="query.name"
+            v-model="query.task_name"
             placeholder="任务名称"
             @keydown.enter.native="update"
           ></el-input>
@@ -51,7 +51,7 @@
         </el-form-item>
       </el-form>
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
-        <el-table-column align="left" prop="name" width="150" label="任务名称"></el-table-column>
+        <el-table-column align="left" prop="task_name" width="150" label="任务名称"></el-table-column>
         <el-table-column align="center" label="任务类别">
           <template slot-scope="scope">
             <span v-if="scope.row.task_type==1">翻译</span>
@@ -96,11 +96,11 @@
             <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">未通过</el-button>
             <span v-if="scope.row.state==1">已审核</span>
             <span v-if="scope.row.state==2">已驳回</span>
-            <!-- <el-button
+            <el-button
               type="text"
-              v-if="scope.row.is_top == 0 && scope.row.is_up == 1"
+              v-if="scope.row.is_top == 0 &&scope.row.state==1"
               @click="remd(scope.row.id)"
-            >推荐</el-button> -->
+            >推荐</el-button>
           </template>
         </el-table-column>
       </el-table>
