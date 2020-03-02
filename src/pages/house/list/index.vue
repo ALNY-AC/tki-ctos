@@ -90,19 +90,15 @@
             </div>
           </template>
         </el-table-column>
-        <!-- <el-table-column fixed="right" align="center" label="操作" width="180">
+        <el-table-column fixed="right" align="center" label="是否推荐" width="180">
           <template slot-scope="scope">
-            <el-button type="text" v-if="scope.row.state==0"  @click="frozen(scope.row)">通过</el-button>
-            <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">未通过</el-button>
-            <span v-if="scope.row.state==1">已审核</span>
-            <span v-if="scope.row.state==2">已驳回</span>
             <el-button
               type="text"
               v-if="scope.row.is_top == 0 &&scope.row.state==1"
               @click="remd(scope.row.id)"
             >推荐</el-button>
           </template>
-        </el-table-column> -->
+        </el-table-column>
       </el-table>
       <el-pagination
         style="margin:20px 0"
