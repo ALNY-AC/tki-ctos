@@ -12,6 +12,12 @@
       </template>
       <el-menu-item index="/article/home/list" :route="{path:'/article/home/list'}">文章列表</el-menu-item>
     </el-submenu>
+    <el-submenu index="审核">
+      <template slot="title">
+        <span>审核管理</span>
+      </template>
+      <el-menu-item index="/examine/list" :route="{path:'/examine/list'}">审核列表</el-menu-item>
+    </el-submenu>
     <el-submenu index="任务">
       <template slot="title">
         <span>任务管理</span>
