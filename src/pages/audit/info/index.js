@@ -1,17 +1,9 @@
 export default {
-    name: 'list',
+    name: 'info',
     data() {
         return {
-            list: [],
-            total: 0,
-            query: {
-                page_size: 10,
-                page: 1,
-                state: '',
-                name: '',
-            },
+            remark:""
         };
-     
     },
     methods: {
         // 用于初始化一些数据
@@ -20,28 +12,24 @@ export default {
         },
         // 用于更新一些数据
         async update() {
-            const res = await this.$http.post('/budget/checkList', this.query);
-            if(res.code>=0){
-                this.list = res.data
-                console.log(this.list)
-            }
+       
         },
-        async add(item) {
-            try {
-                await this.$confirm('确认同意？', '提示')
-            } catch (error) {
+        async submit(){
+            if(this.remark===''){
+                this.$toast("请填写备注");
                 return false;
             }
-            const res = await this.$http.post('/budget/successSave', {
-             id:item
+            const res = await this.$http.post('/budget/outSave', {
+                id:this.$route.query.id,
+                text:this.remark
             });
-            if (res.code >= 0) {
+            if(res.code>=0){
                 this.$message.success('操作成功！');
-            } else {
-                this.$message.error('操作失败！');
+                this.$router.replace('/examine/list');
+            }else{
+                this.$message.error(res.msg);
             }
-            this.update();
-        },
+        }
     },
     // 计算属性
     computed: {},
