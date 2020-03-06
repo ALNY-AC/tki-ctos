@@ -107,7 +107,7 @@
             <el-button
               type="text"
               @click="$router.push(`/house/info?id=${scope.row.id}`)"
-            >查看详情</el-button>
+            >查看</el-button>
           </template>
         </el-table-column>
       </el-table>
