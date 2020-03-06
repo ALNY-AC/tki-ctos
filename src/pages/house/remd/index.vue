@@ -47,10 +47,17 @@
         </el-table-column>
         <el-table-column align="center" label="任务进度">
           <template slot-scope="scope">
-            <span v-if="scope.row.task_state==1">申请中</span>
+            <span v-if="scope.row.task_state==1">待支付</span>
             <span v-if="scope.row.task_state==2">进行中</span>
-            <span v-if="scope.row.task_state==3">中止</span>
+            <span v-if="scope.row.task_state==3">终止</span>
             <span v-if="scope.row.task_state==4">完成</span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="审核进度">
+          <template slot-scope="scope">
+            <span v-if="scope.row.state==0">待审核</span>
+            <span v-if="scope.row.state==1">通过</span>
+            <span v-if="scope.row.state==2">未通过</span>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="price" label="任务价格"></el-table-column>
@@ -67,6 +74,10 @@
         <el-table-column fixed="right" align="center" label="操作" width="180">
           <template slot-scope="scope">
             <el-button type="text" @click="remd(scope.row.id)">取消推荐</el-button>
+            <el-button
+              type="text"
+              @click="$router.push(`/house/info?id=${scope.row.id}`)"
+            >查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>

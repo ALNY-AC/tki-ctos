@@ -50,6 +50,7 @@
           <el-button @click="update">筛选</el-button>
         </el-form-item>
       </el-form>
+
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
         <el-table-column align="left" prop="task_name" width="150" label="任务名称"></el-table-column>
         <el-table-column align="center" label="任务类别">
@@ -60,14 +61,21 @@
             <span v-if="scope.row.task_type==4">其他</span>
           </template>
         </el-table-column>
-        <!-- <el-table-column align="center" label="任务进度">
+        <el-table-column align="center" label="任务进度">
           <template slot-scope="scope">
-            <span v-if="scope.row.task_state==1">申请中</span>
+            <span v-if="scope.row.task_state==1">待支付</span>
             <span v-if="scope.row.task_state==2">进行中</span>
-            <span v-if="scope.row.task_state==3">中止</span>
+            <span v-if="scope.row.task_state==3">终止</span>
             <span v-if="scope.row.task_state==4">完成</span>
           </template>
-        </el-table-column> -->
+        </el-table-column>
+        <el-table-column align="center" label="审核进度">
+          <template slot-scope="scope">
+            <span v-if="scope.row.state==0">待审核</span>
+            <span v-if="scope.row.state==1">通过</span>
+            <span v-if="scope.row.state==2">未通过</span>
+          </template>
+        </el-table-column>
         <el-table-column align="center" prop="price" label="任务价格"></el-table-column>
         <el-table-column align="center" prop="info" width="150" label="任务信息"></el-table-column>
         <el-table-column align="center" prop label="所在地">
@@ -90,17 +98,16 @@
             </div>
           </template>
         </el-table-column> -->
-        <el-table-column fixed="right" align="center" label="审核状态" width="180">
+        <el-table-column fixed="right" align="center" label="操作" width="180">
           <template slot-scope="scope">
             <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/review?id=${scope.row.id}`)">待审核</el-button>
             <!-- <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">未通过</el-button> -->
             <span v-if="scope.row.state==1">已通过</span>
             <span v-if="scope.row.state==2">已驳回</span>
-            <!-- <el-button
+            <el-button
               type="text"
-              v-if="scope.row.is_top == 0 &&scope.row.state==1"
-              @click="remd(scope.row.id)"
-            >推荐</el-button> -->
+              @click="$router.push(`/house/info?id=${scope.row.id}`)"
+            >查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>
