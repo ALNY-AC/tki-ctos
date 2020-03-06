@@ -1,16 +1,16 @@
 <template>
   <div id="info">
     <el-card shadow="never">
-    <el-page-header @back="$back()" :content="新建房源"></el-page-header>
-      <el-divider></el-divider>
-      <el-form
-        @submit.native.prevent
-        label-width="150px"
-        size="small"
-        :model="form"
-        ref="form"
-        :rules="rules"
-      >
+      <el-page-header @back="$back()" :content="新建房源"></el-page-header>
+        <el-divider></el-divider>
+        <el-form
+          @submit.native.prevent
+          label-width="150px"
+          size="small"
+          :model="form"
+          ref="form"
+          :rules="rules"
+        >
         <el-form-item label="任务编号" prop="task_num">
           <el-input style="width:500px" v-model="list.task_num" disabled></el-input>
         </el-form-item>
@@ -35,10 +35,10 @@
         <el-form-item label="任务备注" prop="notes">
           <el-input style="width:500px" v-model="list.notes" disabled></el-input>
         </el-form-item>
-        <!-- <el-form-item label>
+        <el-form-item label>
           <el-button type="primary" size="medium" @click="adopt">通过</el-button>
           <el-button type="danger" size="medium" @click="refuse">拒绝</el-button>
-        </el-form-item> -->
+        </el-form-item>
       </el-form>
     </el-card>
   </div>

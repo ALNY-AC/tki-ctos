@@ -92,7 +92,7 @@
         </el-table-column> -->
         <el-table-column fixed="right" align="center" label="审核状态" width="180">
           <template slot-scope="scope">
-            <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">待审核</el-button>
+            <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/review?id=${scope.row.id}`)">待审核</el-button>
             <!-- <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">未通过</el-button> -->
             <span v-if="scope.row.state==1">已通过</span>
             <span v-if="scope.row.state==2">已驳回</span>

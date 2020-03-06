@@ -90,13 +90,18 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column fixed="right" align="center" label="是否推荐" width="180">
+        <el-table-column fixed="right" align="center" label="操作" width="180">
           <template slot-scope="scope">
             <el-button
               type="text"
               v-if="scope.row.is_top == 0 &&scope.row.state==1"
               @click="remd(scope.row.id)"
             >推荐</el-button>
+            <el-button
+              type="text"
+              v-if="scope.row.is_top == 0 &&scope.row.state==1"
+              @click="$router.push(`/house/info?id=${scope.row.id}`)"
+            >查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>
