@@ -12,28 +12,29 @@
           :rules="rules"
         >
         <el-form-item label="任务编号" prop="task_num">
-          <el-input style="width:500px" v-model="list.task_num" disabled></el-input>
+          <span>{{list.task_num}}</span>
         </el-form-item>
         <el-form-item label="任务名称" prop="task_name">
-          <el-input style="width:500px" v-model="list.task_name" disabled></el-input>
+          <span>{{list.task_name}}</span>
         </el-form-item>
         <el-form-item label="任务类别" prop="task_type">
-          <el-input style="width:500px" v-model="list.task_type" disabled></el-input>
+          <span>{{list.task_type}}</span>
         </el-form-item>
         <el-form-item label="任务周期" prop="cycle">
-          <el-input style="width:500px" v-model="list.cycle" disabled></el-input>
+          <span>{{list.cycle}}</span>
         </el-form-item>
         <el-form-item label="任务价格" prop="price">
-          <el-input style="width:500px" v-model="list.price" disabled></el-input>
+          <span>{{list.price}}</span>
         </el-form-item>
         <el-form-item label="任务信息" prop="info">
-          <el-input style="width:500px" v-model="list.info" disabled></el-input>
+          <span>{{list.info}}</span>
         </el-form-item>
         <el-form-item label="联系方式" prop="contact">
-          <el-input style="width:500px" v-model="list.contact" disabled></el-input>
+          <span>{{list.contact}}</span>
         </el-form-item>
         <el-form-item label="任务备注" prop="notes">
-          <el-input style="width:500px" v-model="list.notes" disabled></el-input>
+          <span>{{list.notes}}</span>
+          <span v-if="list.notes == null">暂无</span>
         </el-form-item>
         <el-form-item label>
           <el-button type="primary" size="medium" @click="adopt">通过</el-button>

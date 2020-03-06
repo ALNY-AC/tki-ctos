@@ -86,28 +86,17 @@
         <el-table-column align="center" prop="address" width="200" label="详细地址"></el-table-column>
 
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
-        <!-- <el-table-column align="center" label="状态" width="80">
-          <template slot-scope="scope">
-            <div>
-              <el-switch
-                v-model="scope.row.is_up"
-                @change="save(scope.row)"
-                :active-value="1"
-                :inactive-value="0"
-              ></el-switch>
-            </div>
-          </template>
-        </el-table-column> -->
         <el-table-column fixed="right" align="center" label="操作" width="180">
           <template slot-scope="scope">
             <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/review?id=${scope.row.id}`)">待审核</el-button>
-            <!-- <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/info?id=${scope.row.id}`)">未通过</el-button> -->
             <span v-if="scope.row.state==1">已通过</span>
             <span v-if="scope.row.state==2">已驳回</span>
             <el-button
               type="text"
               @click="$router.push(`/house/info?id=${scope.row.id}`)"
             >查看</el-button>
+            <br>
+            <span type="text" v-if="scope.row.state==2">{{scope.row.remarks}}</span>
           </template>
         </el-table-column>
       </el-table>
