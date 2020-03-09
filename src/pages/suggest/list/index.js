@@ -38,60 +38,60 @@ export default {
       if (this.addressCode.length > 0) {
         this.query.a = this.addressCode[2]
       }
-      const res = await this.$http.post('/task/list', this.query);
+      const res = await this.$http.post('/suggest/list', this.query);
       if (res.code >= 0) {
 
         this.total = res.total;
         this.list = res.data;
       }
     },
-    async frozen(item) {
+    // async frozen(item) {
 
-      try {
-        await this.$confirm(`确认通过？`, '提示')
-      } catch (error) {
-        return false;
-      }
-      const res = await this.$http.post('/task/save', {
-        state: 1,
-        id: item.id,
-      });
-      if (res.code >= 0) {
-        this.$message.success('操作成功！');
-        this.update()
-      } else {
-        this.$message.error('操作失败！');
-      }
-    },
-    async save(item) {
-      const res = await this.$http.post('/task/save', {
-        is_up: item.is_up,
-        id: item.id
-      });
-      if (res.code >= 0) {
-        this.$message.success('操作成功！');
-        this.update()
-      } else {
-        this.$message.error('操作失败！');
-      }
-    },
-    async remd(id) {
-      try {
-        await this.$confirm('确认推荐此任务？', '提示')
-      } catch (error) {
-        return false;
-      }
-      const res = await this.$http.post('/task/save', {
-        is_top: 1,
-        id: id
-      });
-      if (res.code >= 0) {
-        this.$message.success('操作成功！');
-        this.update()
-      } else {
-        this.$message.error('操作失败！');
-      }
-    }
+    //   try {
+    //     await this.$confirm(`确认通过？`, '提示')
+    //   } catch (error) {
+    //     return false;
+    //   }
+    //   const res = await this.$http.post('/task/save', {
+    //     state: 1,
+    //     id: item.id,
+    //   });
+    //   if (res.code >= 0) {
+    //     this.$message.success('操作成功！');
+    //     this.update()
+    //   } else {
+    //     this.$message.error('操作失败！');
+    //   }
+    // },
+    // async save(item) {
+    //   const res = await this.$http.post('/task/save', {
+    //     is_up: item.is_up,
+    //     id: item.id
+    //   });
+    //   if (res.code >= 0) {
+    //     this.$message.success('操作成功！');
+    //     this.update()
+    //   } else {
+    //     this.$message.error('操作失败！');
+    //   }
+    // },
+    // async remd(id) {
+    //   try {
+    //     await this.$confirm('确认推荐此任务？', '提示')
+    //   } catch (error) {
+    //     return false;
+    //   }
+    //   const res = await this.$http.post('/task/save', {
+    //     is_top: 1,
+    //     id: id
+    //   });
+    //   if (res.code >= 0) {
+    //     this.$message.success('操作成功！');
+    //     this.update()
+    //   } else {
+    //     this.$message.error('操作失败！');
+    //   }
+    // }
   },
   // 计算属性
   computed: {},

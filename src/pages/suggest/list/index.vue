@@ -1,7 +1,7 @@
 <template>
   <div id="list">
     <el-card shadow="never">
-      <el-page-header @back="$back()" content="任务列表"></el-page-header>
+      <el-page-header @back="$back()" content="投诉列表"></el-page-header>
       <el-divider></el-divider>
 
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
@@ -15,7 +15,7 @@
         </el-table-column>
         <el-table-column align="center" prop="remarks" label="备注"></el-table-column>
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
-        <el-table-column align="center" label="状态" width="80">
+        <!-- <el-table-column align="center" label="状态" width="80">
           <template slot-scope="scope">
             <div>
               <el-switch
@@ -26,7 +26,7 @@
               ></el-switch>
             </div>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column fixed="right" align="center" label="操作" width="180">
           <template slot-scope="scope">
             <el-button
@@ -36,7 +36,7 @@
             >推荐</el-button>
             <el-button
               type="text"
-              @click="$router.push(`/house/info?id=${scope.row.id}`)"
+              @click="$router.push(`/suggest/info?id=${scope.row.id}`)"
             >查看</el-button>
           </template>
         </el-table-column>
