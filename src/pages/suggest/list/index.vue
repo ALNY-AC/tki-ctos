@@ -19,6 +19,7 @@
           <template slot-scope="scope">
             <el-button
               type="text"
+              v-if="scope.row.state == 0"
               @click="$router.push(`/suggest/edit?id=${scope.row.id}`)"
             >编辑</el-button>
             <el-button

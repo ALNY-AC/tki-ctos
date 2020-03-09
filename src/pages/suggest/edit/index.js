@@ -1,7 +1,24 @@
 export default {
-    name: 'edit',
+    name: 'info',
     data() {
-        return {};
+        return {
+            total: 0,
+            query: {
+                page_size: 10,
+                page: 1,
+                is_up: "",
+                task_type: "",
+                task_name: "",
+                task_state: "",
+                state: ""
+            },
+            remarks:'',
+            list: [],
+            Province_list: null,
+            City_list: null,
+            County_list: null,
+            addressCode: []
+        };
     },
     methods: {
         // 用于初始化一些数据
@@ -10,7 +27,54 @@ export default {
         },
         // 用于更新一些数据
         async update() {
-            // const res = await this.$http.post('', {});
+            if (this.addressCode.length > 0) {
+                this.query.a = this.addressCode[2]
+              }
+              const res = await this.$http.post('/suggest/info', { id: this.$route.query.id });
+              if (res.code >= 0) {
+                this.total = res.total;
+                this.list = res.data;
+              }
+        },
+        async refuse() {
+
+            try {
+                let {value} = await this.$prompt('请输入拒绝的理由', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                })
+
+                const res = await this.$http.post('/task/save', {
+                    state: 2,
+                    id: this.$route.query.id,
+                    remarks: value
+                });
+                if (res.code >= 0) {
+                    this.$message.success('操作成功！');
+                    this.$router.go(-1);
+                }
+            } catch (error) {
+
+            }
+        },
+        async adopt() {
+            try {
+                const value = await this.$confirm('确定处理', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                const res = await this.$http.post('/suggest/save', {
+                    state: 1,
+                    id: this.$route.query.id,
+                });
+                if (res.code >= 0) {
+                    this.$message.success('操作成功！');
+                    this.$router.go(-1);
+                }
+            } catch (error) {
+
+            }
         },
     },
     // 计算属性
