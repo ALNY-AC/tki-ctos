@@ -22,7 +22,7 @@
           </el-select>
         </el-form-item>
 
-        <!-- <el-form-item label="任务进度：">
+        <el-form-item label="任务进度：">
           <el-select v-model="query.task_state" @change="update" placeholder="请选择">
             <el-option label="全部" value></el-option>
             <el-option label="申请中" :value="1"></el-option>
@@ -30,7 +30,7 @@
             <el-option label="中止" :value="3"></el-option>
             <el-option label="完成" :value="4"></el-option>
           </el-select>
-        </el-form-item> -->
+        </el-form-item>
 
         <el-form-item label="上下架状态：">
           <el-select v-model="query.is_up" @change="update" placeholder="请选择">
@@ -39,13 +39,13 @@
             <el-option label="禁用" :value="0"></el-option>
           </el-select>
         </el-form-item>
-        <!-- <el-form-item label="审核状态：">
+        <el-form-item label="审核状态：">
           <el-select v-model="query.state" @change="update" placeholder="请选择">
             <el-option label="全部" value></el-option>
             <el-option label="启用" :value="1"></el-option>
             <el-option label="禁用" :value="0"></el-option>
           </el-select>
-        </el-form-item> -->
+        </el-form-item>
         <el-form-item label>
           <el-button @click="update">筛选</el-button>
         </el-form-item>
