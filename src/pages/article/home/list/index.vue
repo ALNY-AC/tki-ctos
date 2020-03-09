@@ -7,13 +7,18 @@
         </el-form-item>
 
         <el-form-item label="标题：">
-          <el-input style="width:200px" v-model="query.name" placeholder="文章标题" @keydown.enter.native="update"></el-input>
+          <el-input
+            style="width:200px"
+            v-model="query.name"
+            placeholder="文章标题"
+            @keydown.enter.native="update"
+          ></el-input>
         </el-form-item>
         <el-form-item label="类型：">
           <el-select v-model="query.type" @change="update" placeholder="请选择">
             <el-option label="全部" value></el-option>
-            <el-option label="文章" :value="1"></el-option>
-            <el-option label="公众号" :value="2"></el-option>
+            <el-option label="活动" :value="1"></el-option>
+            <el-option label="帮助文档" :value="2"></el-option>
           </el-select>
         </el-form-item>
 
@@ -31,7 +36,13 @@
       </el-form>
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
         <el-table-column align="left" prop="title" label="文章标题"></el-table-column>
-
+        <el-table-column align="left" prop="sub_title" label="文章副标题"></el-table-column>
+        <el-table-column align="center"  label="文章类型" width="80" >
+          <template slot-scope="scope">
+            <span v-if="scope.row.type==1">活动</span>
+            <span v-if="scope.row.type==2">帮助文档</span>
+          </template>
+        </el-table-column>
         <el-table-column align="center" prop="add_time" width="170" label="发布时间"></el-table-column>
 
         <el-table-column align="center" prop="is_up" label="上下架" width="80">
@@ -50,7 +61,7 @@
         <el-table-column align="center" prop="first_img" label="文章图片" width="80">
           <template slot-scope="scope">
             <div>
-              <el-image style="width:60px; height:60px" :src="scope.row.first_img"></el-image>
+              <el-image style="width:60px; height:60px" :src="$getUrl(scope.row.first_img)"></el-image>
             </div>
           </template>
         </el-table-column>

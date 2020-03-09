@@ -17,18 +17,14 @@
         <el-form-item label="文章副标题：" prop="sub_title">
           <el-input style="width:500px" v-model="form.sub_title"></el-input>
         </el-form-item>
-        <el-form-item label="文章信息：" prop="info">
-          <el-input style="width:500px" v-model="form.info"></el-input>
-        </el-form-item>
+
         <el-form-item label="文章类型：" prop="type">
           <el-radio-group v-model="form.type">
-            <el-radio :label="1">普通文章</el-radio>
-            <el-radio :label="2">公众号文章</el-radio>
+            <el-radio :label="1">活动</el-radio>
+            <el-radio :label="2">帮助文档</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="联系方式：" prop="contact">
-          <el-input style="width:200px" v-model="form.contact"></el-input>
-        </el-form-item>
+  
         <el-form-item label="上传文章图片：" prop="first_img">
           <!-- <el-input style="width:500px" v-model="form.first_img"></el-input> -->
           <el-row v-if="form.first_img">
@@ -44,14 +40,8 @@
           ></upload>
         </el-form-item>
 
-        <el-form-item label="是否上架：">
-          <template>
-            <div>
-              <el-switch v-model="form.is_up" :active-value="1" :inactive-value="0"></el-switch>
-            </div>
-          </template>
-        </el-form-item>
-        <el-form-item v-if="form.type == 1" label="文章详情：" prop="content">
+    
+        <el-form-item label="文章详情：" prop="content">
           <!-- <el-input
             type="textarea"
             :autosize="{ minRows: 4, maxRows: 4}"
@@ -60,9 +50,7 @@
           ></el-input>-->
           <ol-editor v-model="form.content"></ol-editor>
         </el-form-item>
-        <el-form-item v-else label="文章详情链接：" prop="content">
-          <el-input style="width:500px" v-model="form.content"></el-input>
-        </el-form-item>
+  
         <el-form-item label>
           <el-button type="danger" @click="submit">提交</el-button>
         </el-form-item>

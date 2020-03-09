@@ -21,7 +21,7 @@ export default {
         // 用于更新一些数据
         async update() {
             const res = await this.$http.post('/paper/list', this.query);
-            if (res.code == 1) {
+            if (res.code >= 0) {
                 this.total = res.total;
                 this.list = res.data;
             }

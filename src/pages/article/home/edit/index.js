@@ -4,12 +4,12 @@ export default {
         return {
             form: {
                 title: '', //文章标题
-                info: '', //文章信息
+                // info: '', //文章信息
                 first_img: '',
                 type: 1,//文章类型
-                is_up: '', //是否上下架
+                is_up:1,
                 content: '', //文章详情
-                contact:'',//联系方式
+  
                 type: 1,
                 sub_title:"",//文章副标题
            
