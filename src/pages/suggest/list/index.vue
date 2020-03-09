@@ -15,25 +15,12 @@
         </el-table-column>
         <el-table-column align="center" prop="remarks" label="备注"></el-table-column>
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
-        <!-- <el-table-column align="center" label="状态" width="80">
-          <template slot-scope="scope">
-            <div>
-              <el-switch
-                v-model="scope.row.is_up"
-                @change="save(scope.row)"
-                :active-value="1"
-                :inactive-value="0"
-              ></el-switch>
-            </div>
-          </template>
-        </el-table-column> -->
         <el-table-column fixed="right" align="center" label="操作" width="180">
           <template slot-scope="scope">
             <el-button
               type="text"
-              v-if="scope.row.is_top == 0 &&scope.row.state==1"
-              @click="remd(scope.row.id)"
-            >推荐</el-button>
+              @click="$router.push(`/suggest/edit?id=${scope.row.id}`)"
+            >编辑</el-button>
             <el-button
               type="text"
               @click="$router.push(`/suggest/info?id=${scope.row.id}`)"
