@@ -26,6 +26,12 @@
       <el-menu-item index="/house/examine" :route="{path:'/house/examine'}">审核列表</el-menu-item>
       <el-menu-item index="/house/remd" :route="{path:'/house/remd'}">推荐任务</el-menu-item>
     </el-submenu>
+    <el-submenu index="投诉">
+      <template slot="title">
+        <span>意见管理</span>
+      </template>
+      <el-menu-item index="/house/list" :route="{path:'/suggest/list'}">投诉列表</el-menu-item>
+    </el-submenu>
     <el-submenu index="用户">
       <template slot="title">
         <span>用户管理</span>
