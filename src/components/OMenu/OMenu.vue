@@ -14,9 +14,9 @@
     </el-submenu>
     <el-submenu index="审核">
       <template slot="title">
-        <span>审核管理</span>
+        <span>提现审核</span>
       </template>
-      <el-menu-item index="/examine/list" :route="{path:'/examine/list'}">审核列表</el-menu-item>
+      <el-menu-item index="/examine/list" :route="{path:'/examine/list'}">提现列表</el-menu-item>
     </el-submenu>
     <el-submenu index="任务">
       <template slot="title">
@@ -37,7 +37,7 @@
         <span>用户管理</span>
       </template>
       <el-menu-item index="/user/list" :route="{path:'/user/list'}">用户列表</el-menu-item>
-      <el-menu-item index="/order/list" :route="{path:'/order/list'}">订单列表</el-menu-item>
+      <!-- <el-menu-item index="/order/list" :route="{path:'/order/list'}">订单列表</el-menu-item> -->
     </el-submenu>
     <el-submenu index="config">
       <template slot="title">
