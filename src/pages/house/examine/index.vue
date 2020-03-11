@@ -42,8 +42,9 @@
         <el-form-item label="审核状态：">
           <el-select v-model="query.state" @change="update" placeholder="请选择">
             <el-option label="全部" value></el-option>
-            <el-option label="启用" :value="1"></el-option>
-            <el-option label="禁用" :value="0"></el-option>
+            <el-option label="待审核" :value="0"></el-option>
+            <el-option label="通过" :value="1"></el-option>
+            <el-option label="未通过" :value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label>
@@ -52,8 +53,14 @@
       </el-form>
 
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
-        <el-table-column align="left" prop="task_name" width="150" label="任务名称"></el-table-column>
-        <el-table-column align="center" label="任务类别">
+        <el-table-column align="center" prop="task_name" width="150" label="任务名称"></el-table-column>
+        <el-table-column align="center" prop label="所在地" width="200">
+          <template slot-scope="scope">
+            <span>{{scope.row.p|areaToStr}}{{scope.row.c|areaToStr}}{{scope.row.a|areaToStr}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" prop="address" label="详细地址"></el-table-column>
+        <el-table-column align="center" label="任务类别" width="80">
           <template slot-scope="scope">
             <span v-if="scope.row.task_type==1">翻译</span>
             <span v-if="scope.row.task_type==2">软件</span>
@@ -61,7 +68,7 @@
             <span v-if="scope.row.task_type==4">其他</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="任务进度">
+        <el-table-column align="center" label="任务进度" width="80">
           <template slot-scope="scope">
             <span v-if="scope.row.task_state==1">待支付</span>
             <span v-if="scope.row.task_state==2">进行中</span>
@@ -69,34 +76,31 @@
             <span v-if="scope.row.task_state==4">完成</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="审核进度">
+        <el-table-column align="center" label="审核进度" width="100">
           <template slot-scope="scope">
             <span v-if="scope.row.state==0">待审核</span>
             <span v-if="scope.row.state==1">通过</span>
             <span v-if="scope.row.state==2">未通过</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" prop="price" label="任务价格"></el-table-column>
-        <el-table-column align="center" prop="info" width="150" label="任务信息"></el-table-column>
-        <el-table-column align="center" prop label="所在地">
-          <template slot-scope="scope">
-            <span>{{scope.row.p}}{{scope.row.c}}{{scope.row.a}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" prop="address" width="200" label="详细地址"></el-table-column>
-
+        <el-table-column align="center" prop="price" label="任务价格" width="80"></el-table-column>
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
-        <el-table-column fixed="right" align="center" label="操作" width="180">
+        <el-table-column fixed="right" align="center" label="审核结果" width="180">
           <template slot-scope="scope">
             <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/review?id=${scope.row.id}`)">待审核</el-button>
             <span v-if="scope.row.state==1">已通过</span>
             <span v-if="scope.row.state==2">已驳回</span>
+            <br>
+            <span type="text" class="resu" v-if="scope.row.state==2">拒绝理由：{{scope.row.remarks}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column fixed="right" align="center" label="操作" width="80">
+          <template slot-scope="scope">
             <el-button
               type="text"
               @click="$router.push(`/house/info?id=${scope.row.id}`)"
             >查看</el-button>
             <br>
-            <span type="text" v-if="scope.row.state==2">{{scope.row.remarks}}</span>
           </template>
         </el-table-column>
       </el-table>
