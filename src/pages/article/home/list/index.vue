@@ -9,7 +9,7 @@
         <el-form-item label="标题：">
           <el-input
             style="width:200px"
-            v-model="query.name"
+            v-model="query.title"
             placeholder="文章标题"
             @keydown.enter.native="update"
           ></el-input>
