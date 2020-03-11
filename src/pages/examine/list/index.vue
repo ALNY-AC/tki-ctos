@@ -29,6 +29,13 @@
 
         <el-table-column align="center" prop="add_time" label="创建时间"></el-table-column>
         <el-table-column align="center" prop="text" label="备注"></el-table-column>
+        <el-table-column align="center" label="审核状态" width="120">
+          <template slot-scope="scope">
+            <span v-if="scope.row.state==0">审核中</span>
+            <span v-if="scope.row.state==1">通过</span>
+            <span v-if="scope.row.state==2">驳回</span>
+          </template>
+        </el-table-column>
         <el-table-column align="center" label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" @click="add(scope.row.id)" v-if="scope.row.state==0">同意</el-button>
