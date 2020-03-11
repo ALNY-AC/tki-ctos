@@ -79,7 +79,7 @@
         <el-table-column align="center" prop="info" width="150" label="任务信息"></el-table-column>
         <el-table-column align="center" prop label="所在地">
           <template slot-scope="scope">
-            <span>{{scope.row.p}}{{scope.row.c}}{{scope.row.a}}</span>
+            <span>{{scope.row.p|areaToStr}}{{scope.row.c|areaToStr}}{{scope.row.a|areaToStr}}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="address" width="200" label="详细地址"></el-table-column>
@@ -104,10 +104,7 @@
               v-if="scope.row.is_top == 0 &&scope.row.state==1"
               @click="remd(scope.row.id)"
             >推荐</el-button>
-            <el-button
-              type="text"
-              @click="$router.push(`/house/info?id=${scope.row.id}`)"
-            >查看</el-button>
+            <el-button type="text" @click="$router.push(`/house/info?id=${scope.row.id}`)">查看</el-button>
           </template>
         </el-table-column>
       </el-table>
