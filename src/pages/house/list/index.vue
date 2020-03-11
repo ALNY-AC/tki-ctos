@@ -100,16 +100,18 @@
             </div>
           </template>
         </el-table-column>
+
         <el-table-column fixed="right" align="center" label="是否推荐" width="100">
           <template slot-scope="scope">
             <el-button
               type="text"
-              v-if="scope.row.is_top == 0 &&scope.row.state==1"
+              v-if="scope.row.is_top == 1"
               @click="remd(scope.row.id)"
             >推荐</el-button>
-            <span v-if="scope.row.state==0">已推荐</span>
+            <span v-if="scope.row.is_top==0">已推荐</span>
           </template>
         </el-table-column>
+
         <el-table-column fixed="right" align="center" label="操作" width="80">
           <template slot-scope="scope">
             <el-button type="text" @click="$router.push(`/house/info?id=${scope.row.id}`)">查看</el-button>
