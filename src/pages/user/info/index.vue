@@ -11,17 +11,9 @@
         <el-form-item label="用户昵称：">
           <span>{{form.name}}</span>
         </el-form-item>
-
-        <el-form-item label="用户总次数：">
-          <el-input style="width:100px" v-model="form.max"></el-input>
-        </el-form-item>
-
-        <el-form-item label="用户会员时长：">
-          <el-date-picker v-model="form.time_end_time" format="yyyy-MM-dd HH:mm" type="datetime" value-format="yyyy-MM-dd HH:mm" placeholder="选择日期时间"></el-date-picker>
-        </el-form-item>
-        <el-form-item>
+        <!-- <el-form-item>
           <el-button type="primary" @click="onSubmit">立即更改</el-button>
-        </el-form-item>
+        </el-form-item> -->
 
         <!-- <el-form-item label="账号状态：">
           <span v-if="form.state==1">正常</span>

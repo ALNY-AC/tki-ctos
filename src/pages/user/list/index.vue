@@ -49,37 +49,13 @@
           </template>
         </el-table-column>
         <el-table-column align="center" prop="name" label="用户昵称"></el-table-column>
-
-        <el-table-column align="center" prop="time_end_time" label="用户会员到期时间"></el-table-column>
-
-        <el-table-column align="center" prop="max" label="用户总次数">
-          <template slot-scope="scope">
-            <span>{{scope.row.max}}次</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" prop="count_end_time" label="用户次数到期时间"></el-table-column>
-        <el-table-column align="center" prop="max" label="今日剩余次数">
-          <template slot-scope="scope">
-            <span>{{scope.row.sub}}次</span>
-          </template>
-        </el-table-column>
-        <!-- <el-table-column align="center"  label="账号状态">
-          <template slot-scope="scope">
-            <span v-if="scope.row.user_type==1">普通用户</span>
-            <span v-if="scope.row.user_type==2">管理员</span>
-          </template>
-        </el-table-column>-->
-        <el-table-column align="center" label width="130">
+        <el-table-column align="center" prop="add_time" label="注册时间"></el-table-column>
+        <el-table-column align="center" label="操作" width="130">
           <template slot-scope="scope">
             <el-button
               type="text"
               @click="$router.push({path:`/user/info`,query:{id:scope.row.id}})"
-            >详情</el-button>
-            <!-- <el-button
-              type="text"
-              @click="$router.push({path:`/user/edit`,query:{id:scope.row.id}})"
-            >编辑</el-button>-->
-            <!-- <el-button type="text" @click="del(scope.row.id)">删除</el-button> -->
+            >查看</el-button>
           </template>
         </el-table-column>
       </el-table>
