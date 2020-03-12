@@ -1,7 +1,7 @@
 <template>
   <div id="examine">
     <el-card shadow="never">
-      <el-page-header @back="$back()" content="任务列表"></el-page-header>
+      <el-page-header @back="$back()" content="审核列表"></el-page-header>
       <el-divider></el-divider>
       <el-form inline @submit.native.prevent>
         <el-form-item label="名称：">
