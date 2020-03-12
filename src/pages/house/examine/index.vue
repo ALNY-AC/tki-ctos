@@ -70,24 +70,25 @@
         </el-table-column>
         <el-table-column align="center" label="任务进度" width="80">
           <template slot-scope="scope">
-            <span v-if="scope.row.task_state==1">待支付</span>
-            <span v-if="scope.row.task_state==2">进行中</span>
-            <span v-if="scope.row.task_state==3">终止</span>
-            <span v-if="scope.row.task_state==4">完成</span>
+            <span v-if="scope.row.task_state==1" class="wait" >待支付</span>
+            <span v-if="scope.row.task_state==2" class="wait" >进行中</span>
+            <span v-if="scope.row.task_state==3" class="over">终止</span>
+            <span v-if="scope.row.task_state==4" class="over">完成</span>
+            <span v-if="scope.row.task_state==0" class="over">已支付</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="审核进度" width="100">
+        <el-table-column align="center" label="审核进度" width="80">
           <template slot-scope="scope">
-            <span v-if="scope.row.state==0">待审核</span>
-            <span v-if="scope.row.state==1">通过</span>
-            <span v-if="scope.row.state==2">未通过</span>
+            <span v-if="scope.row.state==0" class="wait-master" >待审核</span>
+            <span v-if="scope.row.state==1" class="over" >通过</span>
+            <span v-if="scope.row.state==2" class="end" >未通过</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" prop="price" label="任务价格" width="80"></el-table-column>
+        <el-table-column align="center" prop="price" label="任务价格" width="100"></el-table-column>
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
         <el-table-column fixed="right" align="center" label="审核结果" width="180">
           <template slot-scope="scope">
-            <el-button type="text" v-if="scope.row.state==0"  @click="$router.push(`/house/review?id=${scope.row.id}`)">待审核</el-button>
+            <el-button type="text" v-if="scope.row.state==0" class="wait-master"  @click="$router.push(`/house/review?id=${scope.row.id}`)">待审核</el-button>
             <span v-if="scope.row.state==1">已通过</span>
             <span v-if="scope.row.state==2">已驳回</span>
             <br>
