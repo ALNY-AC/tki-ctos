@@ -82,7 +82,7 @@ export default {
         return false;
       }
       const res = await this.$http.post('/task/save', {
-        is_top: 0,
+        is_top: 1,
         id: id
       });
       if (res.code >= 0) {
