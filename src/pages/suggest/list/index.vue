@@ -5,6 +5,11 @@
       <el-divider></el-divider>
 
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
+        <el-table-column width="300" prop="name" label="用户">
+          <template slot-scope="scope">
+            <list-user-card :user-info="scope.row" info-type="wx"></list-user-card>
+          </template>
+        </el-table-column>
         <el-table-column align="left" prop="text" width="150" label="投诉与建议"></el-table-column>
         <el-table-column align="center" label="审核状态">
           <template slot-scope="scope">
@@ -22,10 +27,7 @@
               v-if="scope.row.state == 0"
               @click="$router.push(`/suggest/edit?id=${scope.row.id}`)"
             >编辑</el-button>
-            <el-button
-              type="text"
-              @click="$router.push(`/suggest/info?id=${scope.row.id}`)"
-            >查看</el-button>
+            <el-button type="text" @click="$router.push(`/suggest/info?id=${scope.row.id}`)">查看</el-button>
           </template>
         </el-table-column>
       </el-table>
