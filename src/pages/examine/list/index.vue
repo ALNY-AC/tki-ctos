@@ -24,7 +24,7 @@
             <span v-if="scope.row.money_type==3">银行卡</span>
           </template>
         </el-table-column>
-        <el-table-column align="left" prop="money" label="提现账号" width="300"></el-table-column>
+        <el-table-column align="left" prop="account" label="提现账号" width="300"></el-table-column>
         <el-table-column align="left" prop="money" label="提现金额"></el-table-column>
 
         <el-table-column align="center" prop="add_time" label="创建时间"></el-table-column>
