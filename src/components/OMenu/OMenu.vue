@@ -2,10 +2,17 @@
   <el-menu
     router
     class="o-menu"
-    background-color="#4E546C"
+    background-color="#545c64"
     text-color="#fff"
-    active-text-color="#2DD1AC"
+    active-text-color="#ffd04b"
   >
+     <el-submenu index="data">
+      <template slot="title">
+        <span>概况</span>
+      </template>
+      <el-menu-item index="/data/dashboard" :route="{path:'/data/dashboard'}">数据统计</el-menu-item>
+     
+    </el-submenu>
     <el-submenu index="文章">
       <template slot="title">
         <span>文章管理</span>

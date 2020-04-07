@@ -1,0 +1,17 @@
+@import "@/styles/variable.scss";
+
+#dashboard {
+    padding: $page-padding;
+    .top--data-box{
+        border: 1px solid #EBEEF5;
+        padding: 20px;
+        margin: 0 20px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    .chart {
+        height: 300px;
+    }
+}
+
+#dashboard /deep/ {}

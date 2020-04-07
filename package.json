@@ -12,6 +12,7 @@
     "area-linkage-vue": "^5.1.2",
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
+    "echarts": "^4.7.0",
     "element-ui": "^2.11.0",
     "nuxt": "^2.10.2",
     "vue": "^2.5.17"
