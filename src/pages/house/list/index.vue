@@ -57,6 +57,17 @@
 
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
         <el-table-column align="center" prop="task_name" label="任务名称"></el-table-column>
+        <el-table-column align="center" label="发布人" width="100">
+          <template slot-scope="scope">
+            <!-- <span>{{}}</span> -->
+            <el-image
+              style="width: 50px; height: 50px"
+              :src="$getUrl(scope.row.userInfo['head_img'])"
+              :fit="fit"></el-image>
+            <br>
+            <span>{{scope.row.userInfo['name']}}</span>
+          </template>
+        </el-table-column>
         <el-table-column align="center" prop label="所在地" width="200">
           <template slot-scope="scope">
             <span>{{scope.row.p|areaToStr}}{{scope.row.c|areaToStr}}{{scope.row.a|areaToStr}}</span>
