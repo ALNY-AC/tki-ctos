@@ -46,6 +46,13 @@
       <el-menu-item index="/user/list" :route="{path:'/user/list'}">用户列表</el-menu-item>
       <!-- <el-menu-item index="/order/list" :route="{path:'/order/list'}">订单列表</el-menu-item> -->
     </el-submenu>
+    
+    <el-submenu index="class">
+      <template slot="title">
+        <span>分类管理</span>
+      </template>
+      <el-menu-item index="/class/list" :route="{path:'/class/list'}">分类列表</el-menu-item>
+    </el-submenu>
     <el-submenu index="config">
       <template slot="title">
         <span>系统</span>
