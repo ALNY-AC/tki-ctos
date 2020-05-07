@@ -1,7 +1,7 @@
 <template>
   <div id="list">
     <el-card shadow="never">
-      <el-page-header @back="$back()" content="账户列表"></el-page-header>
+      <el-page-header @back="$back()" content="请选择你想要推送的用户"></el-page-header>
       <el-divider></el-divider>
       <el-form @submit.native.prevent inline>
         <!-- <el-form-item>
