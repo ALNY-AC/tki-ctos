@@ -7,6 +7,7 @@ export default {
             query: {
                 page_size: 10,
                 page: 1,
+                name:'',
             },
             selectList: [],
         };
@@ -15,12 +16,13 @@ export default {
         // 用于初始化一些数据
         init() {
             this.update();
-        },
-        initList() {
-
+            this.query.page=1;
+            this.query.name='';
+            this.selectList= [];
         },
         // 用于更新一些数据
         async update() {
+            console.log('update')
             const res = await this.$http.post('/user/list', this.query);
             if (res.code >= 0) {
                 this.total = res.total;
@@ -56,6 +58,7 @@ export default {
             // console.log(this.selectList)
             const res = await this.$http.post('/notify/send_notify', { id: this.$route.query.id, user_id: this.selectList });
             if (res.code >= 0) {
+                this.init();
                 this.$message.success('推送成功~');
             }
         },
