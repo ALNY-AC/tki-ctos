@@ -18,14 +18,8 @@
           <div class="chart" id="userData"></div>
         </el-col>
         <el-col :span="12">
-          <h4>每日注册商户(30天内)</h4>
-          <div class="chart" id="storeData"></div>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <h4>每日订单量(30天内)</h4>
-          <div class="chart" id="orderData"></div>
+          <h4>每日发布任务(30天内)</h4>
+          <div class="chart" id="taskData"></div>
         </el-col>
       </el-row>
     </el-card>

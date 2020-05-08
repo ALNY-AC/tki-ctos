@@ -6,17 +6,13 @@ export default {
         return {
             data: null,
             userChar: null,
-            storeChar: null,
-            orderChar: null,
-            list:[{
-                total:0,
-                title:'用户总量'
-            },{
-                total:0,
-                title:'总商户量'
-            },{
-                total:0,
-                title:'总订单量'
+            taskChar: null,
+            list: [{
+                total: 0,
+                title: '用户总量'
+            }, {
+                total: 0,
+                title: '总任务量'
             }]
         };
     },
@@ -69,8 +65,8 @@ export default {
             this.userChar.setOption(option);
 
         },
-        initStore() {
-            this.storeChar = echarts.init(document.getElementById('storeData'));
+        initTask() {
+            this.taskChar = echarts.init(document.getElementById('taskData'));
             let option = {
                 color: ['#3398DB'],
                 tooltip: {
@@ -88,7 +84,7 @@ export default {
                 xAxis: [
                     {
                         type: 'category',
-                        data: this.data.store.x,
+                        data: this.data.task.x,
                     }
                 ],
                 yAxis: [
@@ -105,73 +101,28 @@ export default {
                             show: true,
                             position: 'top'
                         },
-                        data: this.data.store.data,
+                        data: this.data.task.data,
 
                     }
                 ]
             };
-            this.storeChar.setOption(option);
+            this.taskChar.setOption(option);
         },
-        initOrder() {
-            this.orderChar = echarts.init(document.getElementById('orderData'));
-            let option = {
-                color: ['#3398DB'],
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                    }
-                },
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                },
-                xAxis: [
-                    {
-                        type: 'category',
-                        data: this.data.order.x,
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value',
-                        minInterval: 1
-                    }
-                ],
-                series: [
-                    {
-                        name: '新增用户',
-                        type: 'bar',
-                        label: {
-                            show: true,
-                            position: 'top'
-                        },
-                        data: this.data.order.data,
 
-                    }
-                ]
-            };
-            this.orderChar.setOption(option);
-        },
         updateUI() {
             if (this.userChar) {
                 this.userChar.resize();
-                this.storeChar.resize();
-                this.orderChar.resize();
+                this.taskChar.resize();
             }
         },
         // 用于更新一些数据
         async update() {
             const res = await this.$http.post('/data/info', {});
             this.data = res.data;
-            this.list[0].total=res.data.user.total;
-            this.list[1].total=res.data.store.total;
-            this.list[2].total=res.data.order.total;
+            this.list[0].total = res.data.user.total;
+            this.list[1].total = res.data.task.total;
             this.initUser();
-            this.initStore();
-            this.initOrder();
+            this.initTask();
         },
     },
     // 计算属性

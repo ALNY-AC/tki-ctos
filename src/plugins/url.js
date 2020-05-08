@@ -5,8 +5,8 @@ let Url = {
   // serverUrl: 'http://127.0.0.1:12193/ctos',//李传浩的本地
   serverUrl: 'https://api.flame.yihuo-cloud.com/ctos',//生产环境
   // serverUrl: 'http://192.168.0.115:9002/ctos',//
-    // serverUrl: 'https://api.flame.yihuo-cloud.cn/ctos',//测试环境
- 
+  // serverUrl: 'https://api.flame.yihuo-cloud.cn/ctos',//测试环境
+
   // uploadUrl: '',
   uploadUrl: 'https://api.yihuo-cloud.com',
   // imageUrl: '',
