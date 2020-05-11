@@ -10,6 +10,13 @@
             <list-user-card :user-info="scope.row" info-type="wx"></list-user-card>
           </template>
         </el-table-column>
+        <el-table-column align="center" label="性别">
+          <template slot-scope="scope">
+            <span v-if="scope.row.gender===0">女</span>
+            <span v-if="scope.row.gender===1">男</span>
+            <span v-if="scope.row.gender===null">未知</span>
+          </template>
+        </el-table-column>
         <el-table-column align="left" prop="text" width="150" label="投诉与建议"></el-table-column>
         <el-table-column align="center" label="审核状态">
           <template slot-scope="scope">

@@ -11,6 +11,11 @@
         <el-form-item label="用户昵称：">
           <span>{{form.name}}</span>
         </el-form-item>
+        <el-form-item label="性别：">
+          <span v-if="form.gender===0">女</span>
+          <span v-if="form.gender===1">男</span>
+          <span v-if="form.gender===null">未知</span>
+        </el-form-item>
         <!-- <el-form-item>
           <el-button type="primary" @click="onSubmit">立即更改</el-button>
         </el-form-item> -->

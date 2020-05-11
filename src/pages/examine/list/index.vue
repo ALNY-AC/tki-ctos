@@ -17,6 +17,13 @@
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
         <el-table-column align="left" prop="name" label="门店"></el-table-column>
         <el-table-column align="left" prop="real_name" label="提现人"></el-table-column>
+        <el-table-column align="left" label="性别">
+          <template slot-scope="scope">
+            <span v-if="scope.row.gender===0">女</span>
+            <span v-if="scope.row.gender===1">男</span>
+            <span v-if="scope.row.gender===null">未知</span>
+          </template>
+        </el-table-column>
         <el-table-column align="left" label="提现渠道">
           <template slot-scope="scope">
             <span v-if="scope.row.money_type==1">微信</span>

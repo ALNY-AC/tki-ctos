@@ -49,6 +49,13 @@
           </template>
         </el-table-column>
         <el-table-column align="center" prop="name" label="用户昵称"></el-table-column>
+         <el-table-column align="center" label="性别">
+          <template slot-scope="scope">
+            <span v-if="scope.row.gender===0">女</span>
+            <span v-if="scope.row.gender===1">男</span>
+            <span v-if="scope.row.gender===null">未知</span>
+          </template>
+        </el-table-column>
         <el-table-column align="center" prop="add_time" label="注册时间"></el-table-column>
         <el-table-column align="center" label="操作" width="130">
           <template slot-scope="scope">

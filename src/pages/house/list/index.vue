@@ -63,9 +63,16 @@
             <el-image
               style="width: 50px; height: 50px"
               :src="$getUrl(scope.row.userInfo['head_img'])"
-              :fit="fit"></el-image>
+              fit="fit"></el-image>
             <br>
             <span>{{scope.row.userInfo['name']}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="性别">
+          <template slot-scope="scope">
+            <span v-if="scope.row.userInfo['gender']===0">女</span>
+            <span v-if="scope.row.userInfo['gender']===1">男</span>
+            <span v-if="scope.row.userInfo['gender']===null">未知</span>
           </template>
         </el-table-column>
         <el-table-column align="center" prop label="所在地" width="200">

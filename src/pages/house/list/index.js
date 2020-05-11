@@ -40,7 +40,8 @@ export default {
       }
       const res = await this.$http.post('/task/list', this.query);
       if (res.code >= 0) {
-
+        
+      console.log(res)
         this.total = res.total;
         this.list = res.data;
       }

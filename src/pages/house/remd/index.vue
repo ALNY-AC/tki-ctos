@@ -36,8 +36,6 @@
         </el-form-item>
       </el-form>
 
-
-
     <el-table :data="list" row-key="id" stripe style="width: 100%" border>
         <el-table-column align="left" prop="task_name" width="150" label="任务名称"></el-table-column>
         <el-table-column align="center" label="发布人" width="100">
@@ -46,9 +44,16 @@
             <el-image
               style="width: 50px; height: 50px"
               :src="$getUrl(scope.row.userInfo['head_img'])"
-              :fit="fit"></el-image>
+              fit="fit"></el-image>
             <br>
             <span>{{scope.row.userInfo['name']}}</span>
+          </template>
+        </el-table-column>
+         <el-table-column align="center" label="性别">
+          <template slot-scope="scope">
+            <span v-if="scope.row.userInfo['gender']===0">女</span>
+            <span v-if="scope.row.userInfo['gender']===1">男</span>
+            <span v-if="scope.row.userInfo['gender']===null">未知</span>
           </template>
         </el-table-column>
         <el-table-column align="center" prop label="所在地" width="200">
