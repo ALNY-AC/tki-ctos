@@ -36,10 +36,18 @@
           <span>{{list.notes}}</span>
           <span v-if="list.notes == null">暂无</span>
         </el-form-item>
-        <!-- <el-form-item label>
-          <el-button type="primary" size="medium" @click="adopt">通过</el-button>
-          <el-button type="danger" size="medium" @click="refuse">拒绝</el-button>
-        </el-form-item> -->
+        <el-row>
+          <el-button>默认按钮</el-button>
+          <el-button @click="hand()">进行中</el-button>
+          <el-button @click="qu()">取消退款</el-button>
+        </el-row>
+        
+        <!-- <template>
+          <div class="box">
+            <span class="left"></span>
+            <span class="right" @click="$router.push(`/task/refund?id=${info.id}`)">终止任务</span>
+          </div>
+        </template> -->
       </el-form>
     </el-card>
   </div>
