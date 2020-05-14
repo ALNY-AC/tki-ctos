@@ -66,7 +66,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column align="center" label width="120">
+        <el-table-column align="center" label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" @click="$router.push(`/article/home/edit?id=${scope.row.id}`)">编辑</el-button>
             <el-button type="text" @click="del(scope.row.id)">删除</el-button>

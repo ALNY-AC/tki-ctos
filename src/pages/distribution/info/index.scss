@@ -1,0 +1,15 @@
+@import "@/styles/variable.scss";
+#info {
+    padding: $page-padding;
+    #qrcode {
+        display: inline-block;
+        img {
+          width: 132px;
+          height: 132px;
+          background-color: #fff; //设置白色背景色
+          padding: 6px; // 利用padding的特性，挤出白边
+        }
+      }
+}
+
+#info /deep/ {}

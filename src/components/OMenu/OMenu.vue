@@ -53,6 +53,12 @@
       </template>
       <el-menu-item index="/class/list" :route="{path:'/class/list'}">分类列表</el-menu-item>
     </el-submenu>
+    <el-submenu index="distribution">
+      <template slot="title">
+        <span>分销号管理</span>
+      </template>
+      <el-menu-item index="/distribution/list" :route="{path:'/distribution/list'}">分销号列表</el-menu-item>
+    </el-submenu>
     <el-submenu index="config">
       <template slot="title">
         <span>系统</span>
