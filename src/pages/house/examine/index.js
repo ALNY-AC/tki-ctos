@@ -17,12 +17,15 @@ export default {
       Province_list: null,
       City_list: null,
       County_list: null,
-      addressCode: []
+      addressCode: [],
+      audio:null,
     };
   },
   methods: {
     // 用于初始化一些数据
     init() {
+      this.audio= new Audio();
+      this.audio.src = '/audio/newOrder.m4a';
       const {
         province_list,
         city_list,
@@ -91,6 +94,17 @@ export default {
       } else {
         this.$message.error('操作失败！');
       }
+    },
+    playAudio(){
+      setTimeout(()=>{
+        try {
+          
+          this.audio.play();
+
+        } catch (e) {
+          console.warn(e);
+        }
+      },2000)
     }
   },
   // 计算属性
@@ -104,7 +118,9 @@ export default {
   // el 被新创建的 vm.el 替换，并挂载到实例上去之后调用该钩子。
   mounted() {
     this.init();
-    this.$nextTick(() => {});
+    this.$nextTick(() => {
+      this.playAudio();
+    });
   },
   // 数据更新时调用，发生在虚拟 DOM 打补丁之前。
   beforeUpdate() {},

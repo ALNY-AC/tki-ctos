@@ -76,6 +76,32 @@ export default {
 
             }
         },
+        // 取消退款
+        async qu() {
+
+            const res = await this.$http.post('/task/save', {
+                state: 1,
+                id: this.$route.query.id,
+            });
+            if (res.code >= 0) {
+                this.$message.success('操作成功！');
+                this.$router.go(-1);
+            }
+
+        },
+        // 进行中
+        async hand() {
+
+            const res = await this.$http.post('/task/save', {
+                state: 1,
+                id: this.$route.query.id,
+            });
+            if (res.code >= 0) {
+                this.$message.success('操作成功！');
+                this.$router.go(-1);
+            }
+
+        },
     },
     // 计算属性
     computed: {},
