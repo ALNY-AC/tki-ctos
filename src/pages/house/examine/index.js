@@ -54,7 +54,8 @@ export default {
       const res = await this.$http.post('/task/wait_num');
       // console.log(res)
       if (res.code >= 0) {
-        if (localStorage.getItem('task_num') < res.data.count && !this.isPlay) {
+
+        if (typeof localStorage.getItem('task_num') != 'undefined' && localStorage.getItem('task_num') < res.data.count && !this.isPlay) {
           localStorage.setItem('task_num', res.data.count);
           this.playAudio();
         }
