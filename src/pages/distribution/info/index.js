@@ -3,7 +3,7 @@ export default {
     data() {
         return {
             form: null,
-            qrcode1:null,
+            qrcode1: null,
         };
     },
     methods: {
@@ -19,7 +19,7 @@ export default {
             if (res.code == 1) {
                 this.form = res.data;
             }
-            this.$nextTick(()=>{
+            this.$nextTick(() => {
                 this.qrcode();
             })
         },
@@ -27,7 +27,7 @@ export default {
             this.qrcode1 = new QRCode(this.$refs.Qrcode, {
                 width: 132,
                 height: 132,
-                text: 'https://www.baidu.com', // 二维码地址
+                text: this.form.url, // 二维码地址
                 colorDark: "#000",
                 colorLight: "#fff",
             })
