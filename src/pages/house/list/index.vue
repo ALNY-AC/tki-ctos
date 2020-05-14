@@ -27,8 +27,9 @@
             <el-option label="全部" value></el-option>
             <el-option label="申请中" :value="1"></el-option>
             <el-option label="进行中" :value="2"></el-option>
-            <el-option label="中止" :value="3"></el-option>
+            <el-option label="终止" :value="3"></el-option>
             <el-option label="完成" :value="4"></el-option>
+            <el-option label="已结束" :value="6"></el-option>
           </el-select>
         </el-form-item>
 
@@ -52,24 +53,22 @@
         </el-form-item>
       </el-form>
 
-
-
-
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
         <el-table-column align="center" prop="task_name" label="任务名称"></el-table-column>
         <el-table-column align="center" label="发布人" width="100">
-          <template slot-scope="scope">
+          <template slot-scope="scope" v-if="scope.row.userInfo">
             <!-- <span>{{}}</span> -->
             <el-image
               style="width: 50px; height: 50px"
               :src="$getUrl(scope.row.userInfo['head_img'])"
-              fit="fit"></el-image>
-            <br>
+              fit="fit"
+            ></el-image>
+            <br />
             <span>{{scope.row.userInfo['name']}}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" label="性别">
-          <template slot-scope="scope">
+          <template slot-scope="scope" v-if="scope.row.userInfo">
             <span v-if="scope.row.userInfo['gender']===0">女</span>
             <span v-if="scope.row.userInfo['gender']===1">男</span>
             <span v-if="scope.row.userInfo['gender']===null">未知</span>
@@ -92,8 +91,8 @@
         <el-table-column align="center" prop="price" label="任务价格" width="80"></el-table-column>
         <el-table-column align="center" label="任务进度" width="80">
           <template slot-scope="scope">
-            <span v-if="scope.row.task_state==1" class="wait" >待支付</span>
-            <span v-if="scope.row.task_state==2" class="wait" >进行中</span>
+            <span v-if="scope.row.task_state==1" class="wait">待支付</span>
+            <span v-if="scope.row.task_state==2" class="wait">进行中</span>
             <span v-if="scope.row.task_state==3" class="over">终止</span>
             <span v-if="scope.row.task_state==4" class="over">完成</span>
             <span v-if="scope.row.task_state==0" class="over">已支付</span>
@@ -101,9 +100,9 @@
         </el-table-column>
         <el-table-column align="center" label="审核进度" width="80">
           <template slot-scope="scope">
-            <span v-if="scope.row.state==0" class="wait-master" >待审核</span>
-            <span v-if="scope.row.state==1" class="over" >通过</span>
-            <span v-if="scope.row.state==2" class="end" >未通过</span>
+            <span v-if="scope.row.state==0" class="wait-master">待审核</span>
+            <span v-if="scope.row.state==1" class="over">通过</span>
+            <span v-if="scope.row.state==2" class="end">未通过</span>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
@@ -119,14 +118,16 @@
             </div>
           </template>
         </el-table-column>
+        <el-table-column fixed="right" align="center" label="状态更改" width="180">
+          <template slot-scope="scope" v-if="scope.row.task_state == 3">
+            <el-button type="text" @click="conduct(scope.row.id)">回退正常状态</el-button>
+            <el-button type="text" @click="end(scope.row.id)">任务结束</el-button>
+          </template>
+        </el-table-column>
 
         <el-table-column fixed="right" align="center" label="是否推荐" width="100">
           <template slot-scope="scope">
-            <el-button
-              type="text"
-              v-if="scope.row.is_top == 1"
-              @click="remd(scope.row.id)"
-            >推荐</el-button>
+            <el-button type="text" v-if="scope.row.is_top == 1" @click="remd(scope.row.id)">推荐</el-button>
             <span v-if="scope.row.is_top==0">已推荐</span>
           </template>
         </el-table-column>
@@ -134,7 +135,11 @@
         <el-table-column fixed="right" align="center" label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" @click="$router.push(`/house/info?id=${scope.row.id}`)">查看</el-button>
-            <el-button type="text" @click="$router.push(`/house/pushUsers?id=${scope.row.id}`)">推送</el-button>
+            <el-button
+              type="text"
+              v-if="scope.row.task_state != 6"
+              @click="$router.push(`/house/pushUsers?id=${scope.row.id}`)"
+            >推送</el-button>
           </template>
         </el-table-column>
       </el-table>
