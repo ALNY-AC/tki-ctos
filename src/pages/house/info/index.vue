@@ -37,9 +37,9 @@
           <span v-if="list.notes == null">暂无</span>
         </el-form-item>
         <el-row>
-          <el-button>默认按钮</el-button>
-          <el-button @click="hand()">进行中</el-button>
-          <el-button @click="qu()">取消退款</el-button>
+          <!-- <el-button>默认按钮</el-button> -->
+          <!-- <el-button @click="hand()">进行中</el-button>
+          <el-button @click="qu()">取消退款</el-button> -->
         </el-row>
         
         <!-- <template>
