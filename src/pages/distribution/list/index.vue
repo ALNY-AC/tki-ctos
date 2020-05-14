@@ -8,25 +8,15 @@
       </el-form>
       <el-table :data="list" row-key="id" stripe style="width: 100%" border>
         <el-table-column align="left" prop="name" label="分销号名称"></el-table-column>
-
+        <el-table-column align="center" prop="count" label="分销号名称"></el-table-column>
         <el-table-column align="center" prop="add_time" width="170" label="发布时间"></el-table-column>
-
-        <!-- <el-table-column align="center" prop="first_img" label="分销号二维码" width="80">
+        <el-table-column align="center" label="操作" width>
           <template slot-scope="scope">
-            <div>
-              <el-image style="width:60px; height:60px" :src="$getUrl(scope.row.first_img)"></el-image>
-            </div>
-          </template>
-        </el-table-column> -->
-
-        <el-table-column align="center" label="操作" width="120">
-          <template slot-scope="scope">
-            <el-button type="text" @click="$router.push(`/distribution/info?fork_id=${scope.row.id}`)">查看</el-button>
+            <el-button type="text" @click="$router.push(`/distribution/info?fork_id=${scope.row.id}`)">查看账号</el-button>
             <el-button type="text" @click="del(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
-
       <el-pagination
         style="margin:20px 0"
         :current-page.sync="query.page"

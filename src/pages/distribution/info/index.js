@@ -4,11 +4,19 @@ export default {
         return {
             form: null,
             qrcode1: null,
+            list: [],
+            total: 0,
+            query: {
+                page_size: 10,
+                page: 1,
+                fork_id:0,
+            },
         };
     },
     methods: {
         // 用于初始化一些数据
         init() {
+            this.query.fork_id=this.$route.query.fork_id;
             this.update();
         },
         // 用于更新一些数据
@@ -22,6 +30,11 @@ export default {
             this.$nextTick(() => {
                 this.qrcode();
             })
+            const res1 = await this.$http.post('/fork/user_fork', this.query);
+            if (res1.code >= 0) {
+                this.total = res1.total;
+                this.list = res1.data;
+            }
         },
         qrcode() {
             this.qrcode1 = new QRCode(this.$refs.Qrcode, {
@@ -62,6 +75,13 @@ export default {
     directives: {},
     // 一个对象，键是需要观察的表达式，值是对应回调函数。
     watch: {
+        'query.page'() {
+            this.update();
+
+        },
+        'query.page_size'() {
+            this.update();
+        }
     },
     // 组件列表
     components: {},
