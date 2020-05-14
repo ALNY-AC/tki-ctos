@@ -29,6 +29,7 @@ export default {
       this.audio = new Audio();
       this.audio.src = '/audio/newOrder.m4a';
       this.audio.loop = true;
+      this.audio.muted = true;
       const {
         province_list,
         city_list,
@@ -52,10 +53,13 @@ export default {
     },
     async getTask_num() {
       const res = await this.$http.post('/task/wait_num');
-      // console.log(res)
       if (res.code >= 0) {
-
-        if (typeof localStorage.getItem('task_num') != 'undefined' && localStorage.getItem('task_num') < res.data.count && !this.isPlay) {
+        if (typeof localStorage.task_num == 'undefined') {
+          localStorage.setItem('task_num', res.data.count);
+          return
+        }
+        if (Number(localStorage.task_num) < res.data.count && !this.isPlay) {
+          this.update();
           localStorage.setItem('task_num', res.data.count);
           this.playAudio();
         }
@@ -112,7 +116,8 @@ export default {
         const res = await this.$http.post('/task/list', this.query);
         if (res.code >= 0) {
           this.isPlay = true;
-          this.audio.load()
+          this.audio.load();
+          this.audio.muted = false;
           this.audio.play();
           const res1 = await this.$alert('你有一个新的待审核订单,请及时处理!', '提醒!', {});
           if (res1) {
@@ -125,6 +130,7 @@ export default {
     },
     stopAudio() {
       this.isPlay = false;
+      this.audio.muted = true;
       this.audio.pause();
     }
   },
