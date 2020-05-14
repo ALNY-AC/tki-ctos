@@ -119,7 +119,7 @@ export default {
           this.audio.load();
           this.audio.muted = false;
           this.audio.play();
-          const res1 = await this.$alert('你有一个新的待审核订单,请及时处理!', '提醒!', {});
+          const res1 = await this.$alert('你有一个新的待审核订单,请及时处理!', '提醒!', {showClose:false});
           if (res1) {
             this.stopAudio()
           }
