@@ -146,6 +146,7 @@ export default {
   mounted() {
     this.init();
     this.timer = setInterval(this.getTask_num, 2000);
+    this.$nextTick(() => { });
   },
   // 数据更新时调用，发生在虚拟 DOM 打补丁之前。
   beforeUpdate() { },

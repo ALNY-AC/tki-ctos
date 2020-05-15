@@ -10,18 +10,26 @@ export default {
                 state: '',
                 name: '',
             },
+
+            audio: null,
+            timer: null,
+            isPlay: false,
         };
-     
+
     },
     methods: {
         // 用于初始化一些数据
         init() {
+            this.audio = new Audio();
+            this.audio.src = '/audio/newCashOut.m4a';
+            this.audio.loop = true;
+            this.audio.muted = true;
             this.update();
         },
         // 用于更新一些数据
         async update() {
             const res = await this.$http.post('/budget/checkList', this.query);
-            if(res.code>=0){
+            if (res.code >= 0) {
                 this.list = res.data
                 console.log(this.list)
             }
@@ -33,7 +41,7 @@ export default {
                 return false;
             }
             const res = await this.$http.post('/budget/successSave', {
-             id:item
+                id: item
             });
             if (res.code >= 0) {
                 this.$message.success('操作成功！');
@@ -42,6 +50,44 @@ export default {
             }
             this.update();
         },
+        async getBudget_num() {
+            const res = await this.$http.post('/budget/budget_num');
+            console.log(res)
+            if (res.code >= 0) {
+                console.log(localStorage.budget_num,typeof localStorage.budget_num)
+                if (typeof localStorage.budget_num == 'undefined') {
+                    localStorage.setItem('budget_num', res.data.count);
+                    return
+                }
+                if (Number(localStorage.budget_num) < res.data.count && !this.isPlay) {
+                    this.update();
+                    localStorage.setItem('budget_num', res.data.count);
+                    this.playAudio();
+                }
+            }
+        },
+        async playAudio() {
+            try {
+                const res = await this.$http.post('/task/list', this.query);
+                if (res.code >= 0) {
+                    this.isPlay = true;
+                    this.audio.load();
+                    this.audio.muted = false;
+                    this.audio.play();
+                    const res1 = await this.$alert('你有一个新的提现订单,请及时处理!', '提醒!', { showClose: false });
+                    if (res1) {
+                        this.stopAudio()
+                    }
+                }
+            } catch (e) {
+                console.warn(e);
+            }
+        },
+        stopAudio() {
+            this.isPlay = false;
+            this.audio.muted = true;
+            this.audio.pause();
+        }
     },
     // 计算属性
     computed: {},
@@ -54,6 +100,7 @@ export default {
     // el 被新创建的 vm.el 替换，并挂载到实例上去之后调用该钩子。
     mounted() {
         this.init();
+        this.timer = setInterval(this.getBudget_num, 2000);
         this.$nextTick(() => { });
     },
     // 数据更新时调用，发生在虚拟 DOM 打补丁之前。
@@ -63,7 +110,9 @@ export default {
     // keep-alive 组件停用时调用。
     deactivated() { },
     // 实例销毁之前调用。在这一步，实例仍然完全可用。
-    beforeDestroy() { },
+    beforeDestroy() {
+        clearInterval(this.timer);
+    },
     //Vue 实例销毁后调用。
     destroyed() { },
     // 当捕获一个来自子孙组件的错误时被调用。
