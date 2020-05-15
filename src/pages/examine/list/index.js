@@ -52,9 +52,7 @@ export default {
         },
         async getBudget_num() {
             const res = await this.$http.post('/budget/budget_num');
-            console.log(res)
             if (res.code >= 0) {
-                console.log(localStorage.budget_num,typeof localStorage.budget_num)
                 if (typeof localStorage.budget_num == 'undefined') {
                     localStorage.setItem('budget_num', res.data.count);
                     return
