@@ -44,12 +44,12 @@
         <el-table-column align="center" prop="head_img" label="用户头像" width="80">
           <template slot-scope="scope">
             <div>
-              <el-image style="width:60px; height:60px" :src="scope.row.head_img"></el-image>
+              <el-image style="width:60px; height:60px" :src="$getUrl(scope.row.head_img)"></el-image>
             </div>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="name" label="用户昵称"></el-table-column>
-         <el-table-column align="center" label="性别">
+        <el-table-column align="center" label="性别">
           <template slot-scope="scope">
             <span v-if="scope.row.gender===0">女</span>
             <span v-if="scope.row.gender===1">男</span>
