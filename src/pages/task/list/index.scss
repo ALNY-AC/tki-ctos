@@ -1,0 +1,55 @@
+@import "@/styles/variable.scss";
+
+#list {
+  padding: $page-padding;
+
+  .user-name {
+    overflow: hidden;
+  }
+
+  .task-title {
+    font-weight: bold;
+  }
+
+  .task-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+    .task-item {
+      padding: 3px 10px;
+      font-size: 11px;
+      color: #333;
+      border-radius: 3px;
+      border: solid 1px #ddd;
+      cursor: pointer;
+      white-space: nowrap;
+
+      &.active {
+        background-color: #01ADFF;
+        color: #fff;
+        border-color: #01ADFF;
+
+        &.bg-red {
+          background-color: #F21F1F;
+          border-color: #F21F1F;
+        }
+      }
+
+      &:hover {
+        background-color: #01afff85;
+        color: #fff;
+        border-color: #01ADFF;
+      }
+    }
+
+    .task-right {
+      margin: 0 5px;
+      font-weight: bold;
+    }
+  }
+
+}
+
+#list /deep/ {}

@@ -15,6 +15,7 @@
         <span>任务管理</span>
       </template>
       <el-menu-item index="/house/list" :route="{path:'/house/list'}">任务列表</el-menu-item>
+      <el-menu-item index="/task/list" :route="{path:'/task/list'}">任务列表2</el-menu-item>
       <el-menu-item index="/house/examine" :route="{path:'/house/examine'}">审核列表</el-menu-item>
       <el-menu-item index="/house/remd" :route="{path:'/house/remd'}">推荐任务</el-menu-item>
     </el-submenu>
