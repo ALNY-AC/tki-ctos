@@ -106,7 +106,7 @@
           </template>
         </el-table-column>
         <el-table-column align="center" prop="add_time" width="200" label="发布时间"></el-table-column>
-        <el-table-column align="center" label="状态" width="80">
+        <el-table-column align="center" label="上下架" width="80">
           <template slot-scope="scope">
             <div>
               <el-switch
