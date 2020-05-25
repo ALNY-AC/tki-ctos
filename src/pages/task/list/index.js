@@ -8,6 +8,7 @@ export default {
         page_size: 10,
         page: 1,
         is_up: "",
+        is_top: '',
         task_type: "",
         task_name: "",
         task_state: "",
@@ -33,26 +34,7 @@ export default {
     },
     async httpClass() {
       const res = await this.$http.post('/class/list', {});
-
       this.classList = res.data;
-    },
-    async frozen(item) {
-
-      try {
-        await this.$confirm(`确认通过？`, '提示')
-      } catch (error) {
-        return false;
-      }
-      const res = await this.$http.post('/task/save', {
-        state: 1,
-        id: item.id,
-      });
-      if (res.code >= 0) {
-        this.$message.success('操作成功！');
-        this.update()
-      } else {
-        this.$message.error('操作失败！');
-      }
     },
     async save(item) {
       const res = await this.$http.post('/task/save', item);
@@ -63,66 +45,36 @@ export default {
         this.$message.error('操作失败！');
       }
     },
-    async remd(id) {
+
+    async updateState(item, state, stateText) {
       try {
-        await this.$confirm('确认推荐此任务？', '提示')
+        await this.$confirm(
+          <div>确认修改为 <b style={{ color: '#f00' }} >{stateText}</b> 状态吗?</div>
+          , '提示', {});
+
+        const res = await this.$http.post('/task/update_state', {
+          id: item.id,
+          task_state: state
+        });
+
+        item.task_state = state;
+        if (res.code >= 0) {
+          this.$message.success('操作成功～');
+          this.update();
+        }
+
       } catch (error) {
-        return false;
+        return;
       }
-      const res = await this.$http.post('/task/save', {
-        is_top: 1,
-        id: id
-      });
-      if (res.code >= 0) {
-        this.$message.success('操作成功！');
-        this.update()
+
+
+    },
+    class_name(v) {
+      let item = this.classList.find(el => el.id == v);
+      if (item) {
+        return item.name;
       } else {
-        this.$message.error('操作失败！');
-      }
-    },
-    async conduct(id) {
-      try {
-        const confirm = await this.$confirm('是否将任务回退?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-        })
-      } catch (error) {
-        return false
-      }
-      try {
-        const res = await this.$http.post('/task/running', {
-          id: id
-        })
-        if (res.code > 0) {
-          this.$message.success('操作成功！');
-          this.update()
-        } else {
-          this.$message.error('操作失败！');
-        }
-      } catch (error) {
-
-      }
-    },
-    async end(id) {
-      try {
-        const res = await this.$http.post('/task/stop', {
-          id: id
-        })
-        if (res.code > 0) {
-          this.$message.success('操作成功！');
-          this.update()
-        } else {
-          this.$message.error('操作失败！');
-        }
-      } catch (error) {
-
-      }
-    },
-    async updateState(item, stateText) {
-      try {
-        await this.$confirm(`确认修改为${stateText}状态吗?`, '提示', {})
-      } catch (error) {
-
+        return '未知分类';
       }
 
     }
@@ -130,7 +82,9 @@ export default {
   // 计算属性
   computed: {},
   // 包含 Vue 实例可用过滤器的哈希表。
-  filters: {},
+  filters: {
+
+  },
   // 在实例创建完成后被立即调用
   created() { },
   // 在挂载开始之前被调用：相关的 render 函数首次被调用。

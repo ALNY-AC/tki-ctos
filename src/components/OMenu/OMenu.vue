@@ -10,15 +10,16 @@
     <el-menu-item index="/article/home/list" :route="{path:'/article/home/list'}">文章管理</el-menu-item>
     <el-menu-item index="/examine/list" :route="{path:'/examine/list'}">提现管理</el-menu-item>
 
-    <el-submenu index="任务">
+    <el-menu-item index="/task/list" :route="{path:'/task/list'}">任务管理</el-menu-item>
+
+    <!-- <el-submenu index="任务">
       <template slot="title">
         <span>任务管理</span>
       </template>
       <el-menu-item index="/house/list" :route="{path:'/house/list'}">任务列表</el-menu-item>
-      <el-menu-item index="/task/list" :route="{path:'/task/list'}">任务列表2</el-menu-item>
       <el-menu-item index="/house/examine" :route="{path:'/house/examine'}">审核列表</el-menu-item>
       <el-menu-item index="/house/remd" :route="{path:'/house/remd'}">推荐任务</el-menu-item>
-    </el-submenu>
+    </el-submenu>-->
 
     <el-menu-item index="/suggest/list" :route="{path:'/suggest/list'}">反馈管理</el-menu-item>
     <el-menu-item index="/user/list" :route="{path:'/user/list'}">用户管理</el-menu-item>

@@ -19,6 +19,13 @@
             <el-radio :label="0" border>下架</el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="推荐：">
+          <el-radio-group @change="update" v-model="query.is_top" size="small">
+            <el-radio label border>全部</el-radio>
+            <el-radio :label="1" border>已推荐</el-radio>
+            <el-radio :label="0" border>未推荐</el-radio>
+          </el-radio-group>
+        </el-form-item>
         <el-form-item label="分类：">
           <el-radio-group @change="update" v-model="query.task_type" size="small">
             <el-radio label border>全部</el-radio>
@@ -30,6 +37,9 @@
               :key="item.id"
             >{{item.name}}</el-radio>
           </el-radio-group>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="update">筛选</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -55,7 +65,7 @@
             </div>
             <div class="task-class">
               <i class="el-icon-menu"></i>
-              {{scope.row.task_type}}
+              <span>{{class_name(scope.row.task_type )}}</span>
             </div>
           </template>
         </el-table-column>
@@ -82,30 +92,34 @@
           <template slot-scope="scope">
             <div class="task-list">
               <div
-                @click="updateState(scope.row,'待支付')"
+                @click="updateState(scope.row,1,'待支付')"
                 :class="['task-item',{'active':scope.row.task_state==1}]"
               >待支付</div>
               <i class="el-icon-right task-right"></i>
               <div
-                @click="updateState(scope.row,'招募中')"
+                @click="updateState(scope.row,2,'招募中')"
                 :class="['task-item',{'active':scope.row.task_state==2}]"
               >招募中</div>
               <i class="el-icon-right task-right"></i>
               <div
-                @click="updateState(scope.row,'进行中')"
+                @click="updateState(scope.row,3,'进行中')"
                 :class="['task-item',{'active':scope.row.task_state==3}]"
               >进行中</div>
               <i class="el-icon-right task-right"></i>
               <div
-                @click="updateState(scope.row,'完成')"
+                @click="updateState(scope.row,4,'完成')"
                 :class="['task-item',{'active':scope.row.task_state==4}]"
               >已完成</div>
               <i class="el-icon-right task-right"></i>
               <div
-                @click="updateState(scope.row,'申诉')"
+                @click="updateState(scope.row,5,'申诉')"
                 :class="['task-item',{'active bg-red':scope.row.task_state==5}]"
               >申诉</div>
             </div>
+            <div
+              v-if="scope.row.stop_remark && scope.row.task_state==5"
+              style="color:#f00;padding:10px 0"
+            >申诉理由：{{scope.row.stop_remark}}</div>
           </template>
         </el-table-column>
 
@@ -115,7 +129,7 @@
             <div>
               <el-switch
                 v-model="scope.row.is_up"
-                @change="save(scope.row)"
+                @change="save({id:scope.row.id,is_up:scope.row.is_up})"
                 :active-value="1"
                 :inactive-value="0"
               ></el-switch>
@@ -129,7 +143,7 @@
             <span v-if="scope.row.is_top==0">已推荐</span>-->
             <el-switch
               v-model="scope.row.is_top"
-              @change="save(scope.row)"
+              @change="save({id:scope.row.id,is_top:scope.row.is_top})"
               :active-value="1"
               :inactive-value="0"
             ></el-switch>
