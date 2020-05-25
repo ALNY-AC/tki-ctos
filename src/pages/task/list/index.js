@@ -71,6 +71,8 @@ export default {
     },
     async del(item) {
 
+      console.warn(item);
+
       const res = await this.$http.post('/task/del', {
         id: item.id,
       });

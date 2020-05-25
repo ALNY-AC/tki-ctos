@@ -149,7 +149,7 @@
         <el-table-column fixed="right" align="center" label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" @click="$router.push(`/house/info?id=${scope.row.id}`)">查看</el-button>
-            <el-button type="text" @click="del(item)">删除</el-button>
+            <el-button type="text" @click="del(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
