@@ -69,6 +69,18 @@ export default {
 
 
     },
+    async del(item) {
+
+      const res = await this.$http.post('/task/del', {
+        id: item.id,
+      });
+
+      if (res.code >= 0) {
+        this.$message.success('操作成功～');
+        this.update();
+      }
+
+    },
     class_name(v) {
       let item = this.classList.find(el => el.id == v);
       if (item) {
@@ -77,6 +89,9 @@ export default {
         return '未知分类';
       }
 
+    },
+    showImg(url) {
+      window.open(this.$getUrl(url));
     }
   },
   // 计算属性

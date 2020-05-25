@@ -56,7 +56,8 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column align="left" prop label="任务信息" width="200">
+
+        <el-table-column align="left" prop="task_name" label="任务信息" width="200">
           <template slot-scope="scope">
             <div class="task-title">{{scope.row.task_name}}</div>
             <div class="task-location">
@@ -69,24 +70,19 @@
             </div>
           </template>
         </el-table-column>
-        <!-- 
-        <el-table-column align="center" prop="price" label="任务价格" width="80"></el-table-column>
-        <el-table-column align="center" label="任务进度" width="80">
+
+        <el-table-column align="center" prop="img" label="任务图片" width="150">
           <template slot-scope="scope">
-            <span v-if="scope.row.task_state==1" class="wait">待支付</span>
-            <span v-if="scope.row.task_state==2" class="wait">进行中</span>
-            <span v-if="scope.row.task_state==3" class="over">终止</span>
-            <span v-if="scope.row.task_state==4" class="over">完成</span>
-            <span v-if="scope.row.task_state==0" class="over">已支付</span>
+            <div style="padding:10px 0">
+              <el-image
+                @click="showImg(scope.row.img)"
+                class="img"
+                fit="cover"
+                :src="$getUrl(scope.row.img)"
+              ></el-image>
+            </div>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="审核进度" width="80">
-          <template slot-scope="scope">
-            <span v-if="scope.row.state==0" class="wait-master">待审核</span>
-            <span v-if="scope.row.state==1" class="over">通过</span>
-            <span v-if="scope.row.state==2" class="end">未通过</span>
-          </template>
-        </el-table-column>-->
 
         <el-table-column label="任务状态" min-width="450">
           <template slot-scope="scope">
@@ -153,11 +149,7 @@
         <el-table-column fixed="right" align="center" label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" @click="$router.push(`/house/info?id=${scope.row.id}`)">查看</el-button>
-            <!-- <el-button
-              type="text"
-              v-if="scope.row.task_state != 6"
-              @click="$router.push(`/house/pushUsers?id=${scope.row.id}`)"
-            >推送</el-button>-->
+            <el-button type="text" @click="del(item)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
